@@ -22,6 +22,22 @@ console.log("Problem 2: " + step(logistic_map(2.6), 0.2, 10));
 
 // Homework 1.4
 
+function collectSteps(fn: IterateMap, x0: number, n: Steps): number[] {
+  function collectStepsInternal(fn: IterateMap, x: number, stepsToGo: Steps, soFar: number[]): number[] {
+    if (stepsToGo <= 0) {
+      return soFar;
+    }
+    const xNext = fn(x);
+    soFar.push(xNext);
+    return collectStepsInternal(fn, xNext, stepsToGo - 1, soFar);
+  }
+  return collectStepsInternal(fn, x0, n, []);
+}
+
+const curlyXncurly = collectSteps(logistic_map(2), 0.2, 50);
+
+const toChartPoint = (xn: number, n: Steps) => ({ x: n, y: xn });
+
 const canvas = (document.getElementById("chart1") as HTMLCanvasElement).getContext("2d");
 if (!canvas) {
   throw "poo";
@@ -31,7 +47,7 @@ if (!canvas) {
     data: {
       datasets: [{
         label: 'r = 2, x0 = 0.2',
-        data: [{ x: 0, y: 0.2 }, { x: 1, y: 0.5 }],
+        data: curlyXncurly.map(toChartPoint),
         backgroundColor: "red",
         borderColor: "brown",
         borderWidth: 1
