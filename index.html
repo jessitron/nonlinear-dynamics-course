@@ -6,7 +6,6 @@
   <style>
     div.chart {
       width: 60%;
-      height: 20%;
     }
   </style>
 </head>
@@ -17,9 +16,22 @@
       href="https://www.complexityexplorer.org/courses/115-nonlinear-dynamics-mathematical-and-computational-approaches">
       Nonlinear Dynamics on Complexity Explorer</a>
   </div>
-  <div class="chart">
-    <canvas id="chart1"></canvas>
+  <div class="chart-and-text">
+    For homework 1.4, start with the logistic map at r=2, x0=0.2 and x0=0.20001.
+    <div class="chart">
+      <canvas id="chart1"></canvas>
+    </div>
+    You can't
+    tell the difference between these.
   </div>
+  <div class="chart-and-text">
+    Subtract these two series and zoom in on the difference:
+    <div class="chart">
+      <canvas id="chart2"></canvas>
+    </div>
+    The difference goes to zero and stays there.
+  </div>
+
 </body>
 <script src="main.js">
 

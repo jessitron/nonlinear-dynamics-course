@@ -50,9 +50,22 @@ function toDataSet(config: DataSet): Chart.ChartDataSets {
   }
 }
 
-placeChart("chart1", [{ label: 'r = 2, x0 = 0.2', iterates: curlyXncurly, color: "red" }]);
+const curlyXHatncurly = collectSteps(logistic_map(2), 0.200001);
+placeChartFrom0To1("chart1", [
+  { label: 'r = 2, x0 = 0.2', iterates: curlyXncurly, color: "red" },
+  { label: 'r = 2, x = 0.200001', iterates: curlyXHatncurly, color: "orange" }
+]);
 
-function placeChart(canvasId: string, data: DataSet[]): void {
+function zipWith<A, B>(fn: (a1: A, a2: A) => B, a1: A[], a2: A[]): B[] {
+  // input arrays better be same length
+  return a1.map((a, i) => fn(a, a2[i]));
+}
+
+placeChart("chart2", [
+  { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, curlyXHatncurly, curlyXncurly), color: "blue" },
+]);
+
+function placeChartFrom0To1(canvasId: string, data: DataSet[]): void {
   const canvas = (document.getElementById(canvasId) as HTMLCanvasElement).getContext("2d");
   if (!canvas) {
     throw "poo";
@@ -74,6 +87,34 @@ function placeChart(canvasId: string, data: DataSet[]): void {
               beginAtZero: true,
               suggestedMin: 0,
               suggestedMax: 1.0,
+            }
+          }]
+        }
+      }
+    });
+  }
+}
+
+
+function placeChart(canvasId: string, data: DataSet[]): void {
+  const canvas = (document.getElementById(canvasId) as HTMLCanvasElement).getContext("2d");
+  if (!canvas) {
+    throw "poo";
+  } else {
+    new Chart(canvas, {
+      type: 'scatter',
+      data: {
+        datasets: data.map(toDataSet),
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            type: 'linear',
+            position: 'bottom',
+          }],
+          yAxes: [{
+            type: 'linear',
+            ticks: {
             }
           }]
         }
