@@ -9,10 +9,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chart.js": "^2.9.29",
     "mocha": "^8.2.1",
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "chartjs": "^0.3.24"
+    "chart.js": "^2.9.4"
   }
 }
