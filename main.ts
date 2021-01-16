@@ -6,9 +6,9 @@ function logistic_map(r: R) {
   return (x: number) => r * x * (1 - x);
 }
 
-type StepFunction = (x: number) => number;
+type IterateMap = (x: number) => number;
 
-function step(fn: StepFunction, x: number, n: Steps, subscript: Steps = 0): number {
+function step(fn: IterateMap, x: number, n: Steps, subscript: Steps = 0): number {
   if (n <= 0) {
     return x;
   }
