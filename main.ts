@@ -22,7 +22,7 @@ console.log("Problem 2: " + step(logistic_map(2.6), 0.2, 10));
 
 // Homework 1.4
 
-function collectSteps(fn: IterateMap, x0: number, n: Steps): number[] {
+function collectSteps(fn: IterateMap, x0: number, n: Steps = 50): number[] {
   function collectStepsInternal(fn: IterateMap, x: number, stepsToGo: Steps, soFar: number[]): number[] {
     if (stepsToGo <= 0) {
       return soFar;
@@ -34,7 +34,7 @@ function collectSteps(fn: IterateMap, x0: number, n: Steps): number[] {
   return collectStepsInternal(fn, x0, n, []);
 }
 
-const curlyXncurly = collectSteps(logistic_map(2), 0.2, 50);
+const curlyXncurly = collectSteps(logistic_map(2), 0.2);
 
 const toChartPoint = (xn: number, n: Steps) => ({ x: n, y: xn });
 
