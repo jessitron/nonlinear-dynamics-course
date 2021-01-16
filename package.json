@@ -1,0 +1,15 @@
+{
+  "name": "nonlinear-dynamics-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^8.2.1",
+    "typescript": "^4.1.3"
+  }
+}
