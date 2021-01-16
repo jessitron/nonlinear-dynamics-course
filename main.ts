@@ -38,7 +38,8 @@ const curlyXncurly = collectSteps(logistic_map(2), 0.2);
 
 const toChartPoint = (xn: number, n: Steps) => ({ x: n, y: xn });
 
-function toDataSet(label: string, iterates: number[], color: string): Chart.ChartDataSets {
+function toDataSet(config: { label: string, iterates: number[], color: string }): Chart.ChartDataSets {
+  const { label, iterates, color } = config;
   return {
     label,
     data: iterates.map(toChartPoint),
@@ -55,7 +56,7 @@ if (!canvas) {
   new Chart(canvas, {
     type: 'scatter',
     data: {
-      datasets: [toDataSet('r = 2, x0 = 0.2', curlyXncurly, "red")]
+      datasets: [toDataSet({ label: 'r = 2, x0 = 0.2', iterates: curlyXncurly, color: "red" })]
     },
     options: {
       scales: {
