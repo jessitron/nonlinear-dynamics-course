@@ -17,4 +17,5 @@ function step(fn: StepFunction, x: number, n: Steps, subscript: Steps = 0): numb
 }
 
 console.log("Problem 1: " + step(logistic_map(2.5), 0.5, 3));
+console.log("Problem 2: " + step(logistic_map(2.6), 0.2, 10));
 
