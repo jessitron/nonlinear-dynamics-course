@@ -23,7 +23,6 @@ function collectSteps(fn, x0, n = 50) {
     }
     return collectStepsInternal(fn, x0, n, []);
 }
-const curlyXncurly = collectSteps(logistic_map(2), 0.2);
 const toChartPoint = (xn, n) => ({ x: n, y: xn });
 function zipWith(fn, a1, a2) {
     // input arrays better be same length
@@ -39,14 +38,26 @@ function toDataSet(config) {
         borderWidth: 1
     };
 }
-const curlyXHatncurly = collectSteps(logistic_map(2), 0.200001);
-placeChartFrom0To1("chart1", [
-    { label: 'r = 2, x0 = 0.2', iterates: curlyXncurly, color: "red" },
-    { label: 'r = 2, x = 0.200001', iterates: curlyXHatncurly, color: "orange" }
-]);
-placeChart("chart2", [
-    { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, curlyXHatncurly, curlyXncurly), color: "blue" },
-]);
+{
+    const rOfInterest = 2;
+    const firstStartingState = 0.2;
+    const nearbyStartingState = firstStartingState + 0.000001;
+    const seriesToCompare = [collectSteps(logistic_map(rOfInterest), firstStartingState), collectSteps(logistic_map(rOfInterest), nearbyStartingState)];
+    placeChartFrom0To1("chart1", [
+        { label: `r = ${rOfInterest}, x0 = ${firstStartingState}`, iterates: seriesToCompare[0], color: "red" },
+        { label: `r = ${rOfInterest}, x = ${nearbyStartingState}`, iterates: seriesToCompare[1], color: "orange" }
+    ]);
+    placeChart("chart2", [
+        { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, seriesToCompare[0], seriesToCompare[1]), color: "blue" },
+    ]);
+    const aFarStep = 500;
+    const fiveHundredthDifference = step(logistic_map(rOfInterest), firstStartingState, aFarStep)
+        - step(logistic_map(rOfInterest), nearbyStartingState, aFarStep);
+    const blank = document.getElementById("answer1");
+    if (!!blank) {
+        blank.innerText = "" + fiveHundredthDifference;
+    }
+}
 {
     const rOfInterest = 3.4;
     const firstStartingState = 0.2;
@@ -59,6 +70,13 @@ placeChart("chart2", [
     placeChart("chart4", [
         { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, seriesToCompare[0], seriesToCompare[1]), color: "blue" },
     ]);
+    const aFarStep = 500;
+    const fiveHundredthDifference = step(logistic_map(rOfInterest), firstStartingState, aFarStep)
+        - step(logistic_map(rOfInterest), nearbyStartingState, aFarStep);
+    const blank = document.getElementById("answer2");
+    if (!!blank) {
+        blank.innerText = "" + fiveHundredthDifference;
+    }
 }
 {
     const rOfInterest = 3.72;
@@ -72,6 +90,13 @@ placeChart("chart2", [
     placeChart("chart6", [
         { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, seriesToCompare[0], seriesToCompare[1]), color: "blue" },
     ]);
+    const aFarStep = 500;
+    const fiveHundredDifferences = zipWith((a, b) => a - b, collectSteps(logistic_map(rOfInterest), firstStartingState, aFarStep), collectSteps(logistic_map(rOfInterest), nearbyStartingState, aFarStep));
+    const averageDifference = fiveHundredDifferences.map(Math.abs).reduce((a, b) => a + b, 0) / 500;
+    const blank = document.getElementById("answer3");
+    if (!!blank) {
+        blank.innerText = "" + averageDifference;
+    }
 }
 function placeChartFrom0To1(canvasId, data) {
     const canvas = document.getElementById(canvasId).getContext("2d");
