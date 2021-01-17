@@ -112,7 +112,7 @@ function toDataSet(config: DataSet): Chart.ChartDataSets {
   ]);
 
   {
-    const aFarStep = 500;
+    const aFarStep = 5000;
     const fiveHundredDifferences = zipWith((a, b) => a - b,
       collectSteps(logistic_map(rOfInterest), firstStartingState, aFarStep),
       collectSteps(logistic_map(rOfInterest), nearbyStartingState, aFarStep));
