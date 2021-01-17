@@ -6,7 +6,7 @@ function step(fn, x, n, subscript = 0) {
     if (n <= 0) {
         return x;
     }
-    console.log(`x[${subscript}] = ${x}`);
+    //console.log(`x[${subscript}] = ${x}`);
     return step(fn, fn(x), n - 1, subscript + 1);
 }
 console.log("Problem 1: " + step(logistic_map(2.5), 0.5, 3));
@@ -100,9 +100,34 @@ function toDataSet(config) {
         }
     }
     {
+        // OK, this one takes too much memory to do in the browser.
+        // I could use streams, but really Jess, just write the function.
+        class DiscreteSystem {
+            constructor(fn, x0) {
+                this.fn = fn;
+                this.state = x0;
+            }
+            // advance one step; return the new value
+            step() {
+                this.state = this.fn(this.state);
+                return this.state;
+            }
+        }
+        const iterate1 = new DiscreteSystem(logistic_map(rOfInterest), firstStartingState);
+        const iterate2 = new DiscreteSystem(logistic_map(rOfInterest), nearbyStartingState);
+        function sumOfAbsoluteStepDistances(stepsToGo, sumSoFar = 0) {
+            if (stepsToGo <= 0) {
+                return sumSoFar;
+            }
+            const difference = Math.abs(iterate1.step() - iterate2.step());
+            // console.log(`With ${stepsToGo} more steps, the difference is ${difference} for a total of ${sumSoFar}`)
+            return sumOfAbsoluteStepDistances(stepsToGo - 1, sumSoFar + difference);
+        }
         const aFarStep = 500000;
-        const fiveHundredDifferences = zipWith((a, b) => a - b, collectSteps(logistic_map(rOfInterest), firstStartingState, aFarStep), collectSteps(logistic_map(rOfInterest), nearbyStartingState, aFarStep));
-        const averageDifference = fiveHundredDifferences.map(Math.abs).reduce((a, b) => a + b, 0) / aFarStep;
+        console.log("Starting to calculate a big one");
+        const fiveHundredThousandDifferences = sumOfAbsoluteStepDistances(aFarStep);
+        const averageDifference = fiveHundredThousandDifferences / aFarStep;
+        console.log("Answer 4 should be: " + averageDifference);
         const blank = document.getElementById("answer4");
         if (!!blank) {
             blank.innerText = "" + averageDifference;
