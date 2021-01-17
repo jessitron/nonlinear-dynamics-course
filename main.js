@@ -25,6 +25,10 @@ function collectSteps(fn, x0, n = 50) {
 }
 const curlyXncurly = collectSteps(logistic_map(2), 0.2);
 const toChartPoint = (xn, n) => ({ x: n, y: xn });
+function zipWith(fn, a1, a2) {
+    // input arrays better be same length
+    return a1.map((a, i) => fn(a, a2[i]));
+}
 function toDataSet(config) {
     const { label, iterates, color } = config;
     return {
@@ -40,12 +44,19 @@ placeChartFrom0To1("chart1", [
     { label: 'r = 2, x0 = 0.2', iterates: curlyXncurly, color: "red" },
     { label: 'r = 2, x = 0.200001', iterates: curlyXHatncurly, color: "orange" }
 ]);
-function zipWith(fn, a1, a2) {
-    // input arrays better be same length
-    return a1.map((a, i) => fn(a, a2[i]));
-}
 placeChart("chart2", [
     { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, curlyXHatncurly, curlyXncurly), color: "blue" },
+]);
+const rOfInterest = 3.4;
+const firstStartingState = 0.2;
+const nearbyStartingState = firstStartingState + 0.000001;
+const seriesToCompare = [collectSteps(logistic_map(rOfInterest), firstStartingState), collectSteps(logistic_map(rOfInterest), nearbyStartingState)];
+placeChartFrom0To1("chart3", [
+    { label: `r = ${rOfInterest}, x0 = ${firstStartingState}`, iterates: seriesToCompare[0], color: "red" },
+    { label: `r = ${rOfInterest}, x = ${nearbyStartingState}`, iterates: seriesToCompare[1], color: "orange" }
+]);
+placeChart("chart4", [
+    { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, seriesToCompare[0], seriesToCompare[1]), color: "blue" },
 ]);
 function placeChartFrom0To1(canvasId, data) {
     const canvas = document.getElementById(canvasId).getContext("2d");
