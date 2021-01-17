@@ -47,17 +47,32 @@ placeChartFrom0To1("chart1", [
 placeChart("chart2", [
     { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, curlyXHatncurly, curlyXncurly), color: "blue" },
 ]);
-const rOfInterest = 3.4;
-const firstStartingState = 0.2;
-const nearbyStartingState = firstStartingState + 0.000001;
-const seriesToCompare = [collectSteps(logistic_map(rOfInterest), firstStartingState), collectSteps(logistic_map(rOfInterest), nearbyStartingState)];
-placeChartFrom0To1("chart3", [
-    { label: `r = ${rOfInterest}, x0 = ${firstStartingState}`, iterates: seriesToCompare[0], color: "red" },
-    { label: `r = ${rOfInterest}, x = ${nearbyStartingState}`, iterates: seriesToCompare[1], color: "orange" }
-]);
-placeChart("chart4", [
-    { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, seriesToCompare[0], seriesToCompare[1]), color: "blue" },
-]);
+{
+    const rOfInterest = 3.4;
+    const firstStartingState = 0.2;
+    const nearbyStartingState = firstStartingState + 0.000001;
+    const seriesToCompare = [collectSteps(logistic_map(rOfInterest), firstStartingState), collectSteps(logistic_map(rOfInterest), nearbyStartingState)];
+    placeChartFrom0To1("chart3", [
+        { label: `r = ${rOfInterest}, x0 = ${firstStartingState}`, iterates: seriesToCompare[0], color: "red" },
+        { label: `r = ${rOfInterest}, x = ${nearbyStartingState}`, iterates: seriesToCompare[1], color: "orange" }
+    ]);
+    placeChart("chart4", [
+        { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, seriesToCompare[0], seriesToCompare[1]), color: "blue" },
+    ]);
+}
+{
+    const rOfInterest = 3.72;
+    const firstStartingState = 0.2;
+    const nearbyStartingState = firstStartingState + 0.000001;
+    const seriesToCompare = [collectSteps(logistic_map(rOfInterest), firstStartingState), collectSteps(logistic_map(rOfInterest), nearbyStartingState)];
+    placeChartFrom0To1("chart5", [
+        { label: `r = ${rOfInterest}, x0 = ${firstStartingState}`, iterates: seriesToCompare[0], color: "red" },
+        { label: `r = ${rOfInterest}, x = ${nearbyStartingState}`, iterates: seriesToCompare[1], color: "orange" }
+    ]);
+    placeChart("chart6", [
+        { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, seriesToCompare[0], seriesToCompare[1]), color: "blue" },
+    ]);
+}
 function placeChartFrom0To1(canvasId, data) {
     const canvas = document.getElementById(canvasId).getContext("2d");
     if (!canvas) {
