@@ -115,17 +115,13 @@ function toDataSet(config) {
         }
         const iterate1 = new DiscreteSystem(logistic_map(rOfInterest), firstStartingState);
         const iterate2 = new DiscreteSystem(logistic_map(rOfInterest), nearbyStartingState);
-        function sumOfAbsoluteStepDistances(stepsToGo, sumSoFar = 0) {
-            if (stepsToGo <= 0) {
-                return sumSoFar;
-            }
-            const difference = Math.abs(iterate1.step() - iterate2.step());
-            // console.log(`With ${stepsToGo} more steps, the difference is ${difference} for a total of ${sumSoFar}`)
-            return sumOfAbsoluteStepDistances(stepsToGo - 1, sumSoFar + difference);
-        }
         const aFarStep = 500000;
+        let fiveHundredThousandDifferences = 0;
         console.log("Starting to calculate a big one");
-        const fiveHundredThousandDifferences = sumOfAbsoluteStepDistances(aFarStep);
+        for (let i = 0; i < aFarStep; i++) {
+            const difference = Math.abs(iterate1.step() - iterate2.step());
+            fiveHundredThousandDifferences += difference;
+        }
         const averageDifference = fiveHundredThousandDifferences / aFarStep;
         console.log("Answer 4 should be: " + averageDifference);
         const blank = document.getElementById("answer4");
