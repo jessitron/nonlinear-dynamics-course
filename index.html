@@ -16,23 +16,23 @@
       column-gap: 5vw;
     }
 
-    .g11 {
+    .first-part {
       grid-column: 1;
+    }
+
+    .second-part {
+      grid-column: 2;
+    }
+
+    .third-part {
+      grid-column: 3;
+    }
+
+    .first-graph {
       grid-row: 1;
     }
 
-    .g21 {
-      grid-column: 2;
-      grid-row: 1;
-    }
-
-    .g12 {
-      grid-column: 1;
-      grid-row: 2;
-    }
-
-    .g22 {
-      grid-column: 2;
+    .second-graph {
       grid-row: 2;
     }
   </style>
@@ -47,7 +47,7 @@
 
   <div class="make-a-grid">
 
-    <div class="g11 chart-and-text">
+    <div class="first-part first-graph chart-and-text">
       For homework 1.4, start with the logistic map at r=2, x0=0.2 and x0=0.20001.
       <div class="chart">
         <canvas id="chart1"></canvas>
@@ -55,21 +55,35 @@
       You can't
       tell the difference between these.
     </div>
-    <div class="g12 chart-and-text">
+    <div class="first-part second-graph chart-and-text">
       Subtract these two series and zoom in on the difference:
       <div class="chart">
         <canvas id="chart2"></canvas>
       </div>
       The difference goes to zero and stays there.
     </div>
-    <div class="g21 chart-and-text">
+    <div class="second-part first-graph chart-and-text">
       Next take the logistic map at r=3.4, x0=0.2 and x0=0.20001.
       <div class="chart">
         <canvas id="chart3"></canvas>
       </div>
       This is the 2-cycle attractor.
     </div>
-    <div class="g22 chart-and-text">
+    <div class="second-part second-graph chart-and-text">
+      Subtract these two series and zoom in on the difference:
+      <div class="chart">
+        <canvas id="chart4"></canvas>
+      </div>
+      Wow, that's a lot jigglier.
+    </div>
+    <div class="third-part first-graph chart-and-text">
+      Next take the logistic map at r=3.4, x0=0.2 and x0=0.20001.
+      <div class="chart">
+        <canvas id="chart3"></canvas>
+      </div>
+      This is the 2-cycle attractor.
+    </div>
+    <div class="third-part second-graph chart-and-text">
       Subtract these two series and zoom in on the difference:
       <div class="chart">
         <canvas id="chart4"></canvas>
