@@ -111,14 +111,26 @@ function toDataSet(config: DataSet): Chart.ChartDataSets {
     { label: 'x0=0.20001 - x0=0.2', iterates: zipWith((a, b) => a - b, seriesToCompare[0], seriesToCompare[1]), color: "blue" },
   ]);
 
-  const aFarStep = 500;
-  const fiveHundredDifferences = zipWith((a, b) => a - b,
-    collectSteps(logistic_map(rOfInterest), firstStartingState, aFarStep),
-    collectSteps(logistic_map(rOfInterest), nearbyStartingState, aFarStep));
-  const averageDifference = fiveHundredDifferences.map(Math.abs).reduce((a, b) => a + b, 0) / 500
+  {
+    const aFarStep = 500;
+    const fiveHundredDifferences = zipWith((a, b) => a - b,
+      collectSteps(logistic_map(rOfInterest), firstStartingState, aFarStep),
+      collectSteps(logistic_map(rOfInterest), nearbyStartingState, aFarStep));
+    const averageDifference = fiveHundredDifferences.map(Math.abs).reduce((a, b) => a + b, 0) / aFarStep;
 
-  const blank = document.getElementById("answer3");
-  if (!!blank) { blank.innerText = "" + averageDifference; }
+    const blank = document.getElementById("answer3");
+    if (!!blank) { blank.innerText = "" + averageDifference; }
+  }
+  {
+    const aFarStep = 500000;
+    const fiveHundredDifferences = zipWith((a, b) => a - b,
+      collectSteps(logistic_map(rOfInterest), firstStartingState, aFarStep),
+      collectSteps(logistic_map(rOfInterest), nearbyStartingState, aFarStep));
+    const averageDifference = fiveHundredDifferences.map(Math.abs).reduce((a, b) => a + b, 0) / aFarStep;
+
+    const blank = document.getElementById("answer4");
+    if (!!blank) { blank.innerText = "" + averageDifference; }
+  }
 }
 
 
