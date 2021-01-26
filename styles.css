@@ -1,0 +1,34 @@
+div.chart {}
+
+.make-a-grid {
+  margin-top: 20px;
+  background-color: rgb(256, 230, 250);
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+
+  column-gap: 5vw;
+}
+
+.first-part {
+  grid-column: 1;
+}
+
+.second-part {
+  grid-column: 2;
+}
+
+.third-part {
+  grid-column: 3;
+}
+
+.first-graph {
+  grid-row: 1;
+}
+
+.second-graph {
+  grid-row: 2;
+}
+
+.third-answer {
+  grid-row: 3;
+}
