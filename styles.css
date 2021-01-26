@@ -47,7 +47,7 @@
   padding: 1rem;
 
   color: #A77B0E;
-  background: #FAE042;
+  background: var(--homework-1-color);
 
   cursor: pointer;
 
