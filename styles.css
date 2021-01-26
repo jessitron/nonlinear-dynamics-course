@@ -2,9 +2,13 @@
   --homework-1-color: rgb(256, 230, 250);
 }
 
+.title {
+  margin-bottom: 20px;
+}
+
 /* homework 1 */
 .make-a-grid {
-  margin-top: 20px;
+  padding: 10px;
   background-color: var(--homework-1-color) ;
   display: grid;
   grid-template-columns: 30% 30% 30%;
