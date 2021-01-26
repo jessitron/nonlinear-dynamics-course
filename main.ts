@@ -6,9 +6,9 @@ function logistic_map(r: R) {
   return (x: number) => r * x * (1 - x);
 }
 
-type IterateMap = (x: number) => number;
+type DifferenceEquation = (x: number) => number;
 
-function step(fn: IterateMap, x: number, n: Steps, subscript: Steps = 0): number {
+function step(fn: DifferenceEquation, x: number, n: Steps, subscript: Steps = 0): number {
   if (n <= 0) {
     return x;
   }
@@ -22,8 +22,8 @@ console.log("Problem 2: " + step(logistic_map(2.6), 0.2, 10));
 
 // Homework 1.4
 
-function collectSteps(fn: IterateMap, x0: number, n: Steps = 50): number[] {
-  function collectStepsInternal(fn: IterateMap, x: number, stepsToGo: Steps, soFar: number[]): number[] {
+function collectSteps(fn: DifferenceEquation, x0: number, n: Steps = 50): number[] {
+  function collectStepsInternal(fn: DifferenceEquation, x: number, stepsToGo: Steps, soFar: number[]): number[] {
     if (stepsToGo <= 0) {
       return soFar;
     }
@@ -127,7 +127,7 @@ function toDataSet(config: DataSet): Chart.ChartDataSets {
 
     class DiscreteSystem {
       private state: number;
-      constructor(private fn: IterateMap, x0: number) {
+      constructor(private fn: DifferenceEquation, x0: number) {
         this.state = x0;
       }
 
