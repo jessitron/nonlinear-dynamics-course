@@ -49,60 +49,65 @@
       Nonlinear Dynamics on Complexity Explorer</a>
   </div>
 
-  <div class="make-a-grid">
-
-    <div class="first-part first-graph chart-and-text">
-      For homework 1.4, start with the logistic map at r=2, x0=0.2 and x0=0.20001.
-      <div class="chart">
-        <canvas id="chart1"></canvas>
+  <div class="wrap-collabsible">
+    <input id="collapsible" class="toggle" type="checkbox">
+    <label for="collapsible" class="lbl-toggle">Unit 1</label>
+    <div class="collapsible-content">
+      <div class="make-a-grid">
+        <div class="first-part first-graph chart-and-text">
+          For homework 1.4, start with the logistic map at r=2, x0=0.2 and x0=0.20001.
+          <div class="chart">
+            <canvas id="chart1"></canvas>
+          </div>
+          You can't
+          tell the difference between these.
+        </div>
+        <div class="first-part second-graph chart-and-text">
+          Subtract these two series and zoom in on the difference:
+          <div class="chart">
+            <canvas id="chart2"></canvas>
+          </div>
+          The difference goes to zero and stays there.
+        </div>
+        <div class="second-part first-graph chart-and-text">
+          Next take the logistic map at r=3.4, x0=0.2 and x0=0.20001.
+          <div class="chart">
+            <canvas id="chart3"></canvas>
+          </div>
+          This is the 2-cycle attractor.
+        </div>
+        <div class="second-part second-graph chart-and-text">
+          Subtract these two series and zoom in on the difference:
+          <div class="chart">
+            <canvas id="chart4"></canvas>
+          </div>
+          Wow, that's a lot jigglier.
+        </div>
+        <div class="third-part first-graph chart-and-text">
+          Finally, take the logistic map at r=3.72, x0=0.2 and x0=0.20001.
+          <div class="chart">
+            <canvas id="chart5"></canvas>
+          </div>
+          Oh, now it's chaotic.
+        </div>
+        <div class="third-part second-graph chart-and-text">
+          Subtract these two series and zoom in on the difference:
+          <div class="chart">
+            <canvas id="chart6"></canvas>
+          </div>
+          Look at that! They start out super close and then get super far!
+        </div>
+        <div class="first-part third-answer">
+          The 500th iterates differ by <span id="answer1"></span>
+        </div>
+        <div class="second-part third-answer">
+          The 500th iterates differ by <span id="answer2"></span>
+        </div>
+        <div class="third-part third-answer">
+          The first 5000 iterates differ by an average of <span id="answer3"></span>.<br>
+          The first 500,000 iterates differ by an average of <span id="answer4"></span>.
+        </div>
       </div>
-      You can't
-      tell the difference between these.
-    </div>
-    <div class="first-part second-graph chart-and-text">
-      Subtract these two series and zoom in on the difference:
-      <div class="chart">
-        <canvas id="chart2"></canvas>
-      </div>
-      The difference goes to zero and stays there.
-    </div>
-    <div class="second-part first-graph chart-and-text">
-      Next take the logistic map at r=3.4, x0=0.2 and x0=0.20001.
-      <div class="chart">
-        <canvas id="chart3"></canvas>
-      </div>
-      This is the 2-cycle attractor.
-    </div>
-    <div class="second-part second-graph chart-and-text">
-      Subtract these two series and zoom in on the difference:
-      <div class="chart">
-        <canvas id="chart4"></canvas>
-      </div>
-      Wow, that's a lot jigglier.
-    </div>
-    <div class="third-part first-graph chart-and-text">
-      Finally, take the logistic map at r=3.72, x0=0.2 and x0=0.20001.
-      <div class="chart">
-        <canvas id="chart5"></canvas>
-      </div>
-      Oh, now it's chaotic.
-    </div>
-    <div class="third-part second-graph chart-and-text">
-      Subtract these two series and zoom in on the difference:
-      <div class="chart">
-        <canvas id="chart6"></canvas>
-      </div>
-      Look at that! They start out super close and then get super far!
-    </div>
-    <div class="first-part third-answer">
-      The 500th iterates differ by <span id="answer1"></span>
-    </div>
-    <div class="second-part third-answer">
-      The 500th iterates differ by <span id="answer2"></span>
-    </div>
-    <div class="third-part third-answer">
-      The first 5000 iterates differ by an average of <span id="answer3"></span>.<br>
-      The first 500,000 iterates differ by an average of <span id="answer4"></span>.
     </div>
   </div>
 
