@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "compile": "tsc --watch",
+    "start": "http-server"
   },
   "author": "",
   "license": "ISC",
