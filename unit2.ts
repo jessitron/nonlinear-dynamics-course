@@ -34,7 +34,7 @@ function placeEmptyChart(): Chart {
 
 export function doHomework() {
   console.log("Starting worker to do Unit 2 homework");
-  const worker = new Worker("unit2worker.js");
+  const worker = new Worker("unit2worker.js", { type: "module" });
 
   const elementToFill = document.getElementById("unit2-commentary");
 
@@ -53,6 +53,10 @@ export function doHomework() {
       return;
     }
     const point = msg.data as ChartPoint;
+    console.log("got point: ", point);
     addData(point);
   });
+  worker.addEventListener("error", err => {
+    console.log("oh no!!", err);
+  })
 }
