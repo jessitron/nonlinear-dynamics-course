@@ -1,6 +1,5 @@
 import { collectSteps, logistic_map } from "./common.js";
 postMessage("Here is a strong");
-postMessage({ x: 1, y: 1 });
 function transmit(...points) {
     console.log("Sending " + points.length + " points");
     points.forEach(p => postMessage(p));
@@ -25,10 +24,11 @@ const rmin = 2.4;
 const rmax = 4;
 const x0 = 0.2;
 const rstep = 0.1;
-const transientSteps = 5;
-const maxSteps = 10; // 1000;
-const anR = rmin;
-const allStepsForAnR = collectSteps(logistic_map(anR), x0, maxSteps);
-const interestingStepsForAnR = allStepsForAnR.slice(transientSteps);
-const points = interestingStepsForAnR.map(d => ({ x: anR, y: d }));
-transmit(...points);
+const transientSteps = 10;
+const maxSteps = 50; // 1000;
+for (let anR = rmin; anR += rstep; anR <= rmax) {
+    const allStepsForAnR = collectSteps(logistic_map(anR), x0, maxSteps);
+    const interestingStepsForAnR = allStepsForAnR.slice(transientSteps);
+    const points = interestingStepsForAnR.map(d => ({ x: anR, y: d }));
+    transmit(...points);
+}
