@@ -41,6 +41,9 @@
 }
 
 /* Collapsing */
+.unit1 .lbl-toggle {
+  background: var(--homework-1-color);
+}
 .lbl-toggle {
   display: block;
 
@@ -51,7 +54,6 @@
   padding: 1rem;
 
   color: #A77B0E;
-  background: var(--homework-1-color);
 
   cursor: pointer;
 
