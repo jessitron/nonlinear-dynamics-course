@@ -1,7 +1,15 @@
 /// <reference path = "node_modules/@types/chart.js/index.d.ts" />
+/* thAT ^ does not work, it doesn't bring in Chart like I want, it still gets a compile error. 
+ * BUT it does work IRL.
+ * I have added Chart in the global space with a script tag in the HTML.
+ * I'm not using a module packager. TypeScript scoffs at my primitive process.
+ * TS does not expect the JS it generates to be used straight-out, especially
+ * not the modules it generates.
+ * */
 
 // Homework 1.4
 
+import type { Chart } from "chart.js";
 import { IterateMap, Steps, logistic_map, step } from "./common.js";
 
 console.log("Problem 1: " + step(logistic_map(2.5), 0.5, 3));
@@ -148,6 +156,7 @@ function placeChartFrom0To1(canvasId: string, data: DataSet[]): void {
   if (!canvas) {
     throw "poo";
   } else {
+    // @ts-ignore: Yes this is available globally dammit
     new Chart(canvas, {
       type: 'scatter',
       data: {
@@ -179,6 +188,7 @@ function placeChart(canvasId: string, data: DataSet[]): void {
   if (!canvas) {
     throw "poo";
   } else {
+    // @ts-ignore: Yes this is available globally dammit
     new Chart(canvas, {
       type: 'scatter',
       data: {
