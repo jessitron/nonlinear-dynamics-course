@@ -6,20 +6,9 @@
  * TS does not expect the JS it generates to be used straight-out, especially
  * not the modules it generates.
  * */
-import { logistic_map, step } from "./common.js";
+import { logistic_map, step, collectSteps } from "./common.js";
 console.log("Problem 1: " + step(logistic_map(2.5), 0.5, 3));
 console.log("Problem 2: " + step(logistic_map(2.6), 0.2, 10));
-function collectSteps(fn, x0, n = 50) {
-    function collectStepsInternal(fn, x, stepsToGo, soFar) {
-        if (stepsToGo <= 0) {
-            return soFar;
-        }
-        const xNext = fn(x);
-        soFar.push(xNext);
-        return collectStepsInternal(fn, xNext, stepsToGo - 1, soFar);
-    }
-    return collectStepsInternal(fn, x0, n, []);
-}
 const toChartPoint = (xn, n) => ({ x: n, y: xn });
 function zipWith(fn, a1, a2) {
     // input arrays better be same length
