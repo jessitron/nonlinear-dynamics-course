@@ -31,9 +31,11 @@ const rstep = 0.1;
 const transientSteps = 10;
 const maxSteps = 50; // 1000;
 
-for (let anR = rmin; anR += rstep; anR <= rmax) {
-  const allStepsForAnR = collectSteps(logistic_map(anR), x0, maxSteps);
-  const interestingStepsForAnR = allStepsForAnR.slice(transientSteps);
-  const points = interestingStepsForAnR.map(d => ({ x: anR, y: d }));
-  transmit(...points);
-}
+//for (let anR = rmin; anR += rstep; anR <= rmax) {
+const anR = rmin;
+console.log("Calculating for r: " + anR);
+const allStepsForAnR = collectSteps(logistic_map(anR), x0, maxSteps);
+const interestingStepsForAnR = allStepsForAnR.slice(transientSteps);
+const points = interestingStepsForAnR.map(d => ({ x: anR, y: d }));
+transmit(...points);
+//}

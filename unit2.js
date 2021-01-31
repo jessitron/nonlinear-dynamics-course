@@ -1,4 +1,5 @@
 const canvasId = "unit2-chart1";
+const terminateButtonId = "unit2-terminate";
 function placeEmptyChart() {
     const canvas = document.getElementById(canvasId).getContext("2d");
     if (!canvas) {
@@ -30,6 +31,10 @@ function placeEmptyChart() {
 export function doHomework() {
     console.log("Starting worker to do Unit 2 homework");
     const worker = new Worker("unit2worker.js", { type: "module" });
+    const terminate = document.getElementById(terminateButtonId);
+    terminate?.addEventListener("click", _e => {
+        worker.terminate();
+    });
     const elementToFill = document.getElementById("unit2-commentary");
     let chart = placeEmptyChart();
     function addData(newPoint) {

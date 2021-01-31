@@ -1,6 +1,8 @@
 import type { ChartPoint } from "chart.js";
 
+
 const canvasId = "unit2-chart1";
+const terminateButtonId = "unit2-terminate";
 
 function placeEmptyChart(): Chart {
   const canvas = (document.getElementById(canvasId) as HTMLCanvasElement).getContext("2d");
@@ -35,6 +37,12 @@ function placeEmptyChart(): Chart {
 export function doHomework() {
   console.log("Starting worker to do Unit 2 homework");
   const worker = new Worker("unit2worker.js", { type: "module" });
+
+
+  const terminate = document.getElementById(terminateButtonId);
+  terminate?.addEventListener("click", _e => {
+    worker.terminate();
+  });
 
   const elementToFill = document.getElementById("unit2-commentary");
 
