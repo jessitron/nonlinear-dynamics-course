@@ -1,5 +1,6 @@
 :root {
   --homework-1-color: rgb(256, 230, 250);
+  --homework-2-color: rgb(230, 250, 256);
 }
 
 .title {
@@ -43,6 +44,9 @@
 /* Collapsing */
 .unit1 .lbl-toggle {
   background: var(--homework-1-color);
+}
+.unit2 .lbl-toggle {
+  background: var(--homework-2-color);
 }
 .lbl-toggle {
   display: block;
