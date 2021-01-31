@@ -12,7 +12,7 @@ function placeEmptyChart(): Chart {
     return new Chart(canvas, {
       type: 'scatter',
       data: {
-        datasets: [{ label: "R", data: [{ x: 0, y: 0 }] }],
+        datasets: [{ label: "R", data: [] }],
       },
       options: {
         scales: {
