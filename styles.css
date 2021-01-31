@@ -111,3 +111,9 @@
 input[type='checkbox'].toggle {
   display: none;
 }
+
+/* Unit 2 */
+#unit2-content {
+  background: var(--homework-2-color);
+  padding: 10px;
+}
